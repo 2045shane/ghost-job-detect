@@ -1,0 +1,50 @@
+{
+  "manifest_version": 3,
+  "name": "假职位 / Ghost job 检测",
+  "version": "0.1.0",
+  "description": "只读可见职位内容，提供中文启发式风险提示。",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://www.linkedin.com/jobs/*",
+    "https://*.indeed.com/*"
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "options_page": "src/options/options.html",
+  "background": {
+    "service_worker": "src/background/service-worker.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://www.linkedin.com/jobs/*",
+        "https://*.indeed.com/*"
+      ],
+      "js": [
+        "src/lib/date-parse.js",
+        "src/lib/heuristics.js",
+        "src/lib/license.js",
+        "src/lib/quota.js",
+        "src/content/extractors.js",
+        "src/content/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
