@@ -33,7 +33,7 @@ function createQuotaStore(storage, now = () => new Date()) {
 }
 function isSupportedUrl(value) {
   try { const u = new URL(value); return u.protocol === 'https:' &&
-    ((u.hostname === 'www.linkedin.com' && u.pathname.startsWith('/jobs/')) || /(^|\.)indeed\.com$/.test(u.hostname));
+    u.hostname === 'www.linkedin.com' && u.pathname.startsWith('/jobs/');
   } catch { return false; }
 }
 

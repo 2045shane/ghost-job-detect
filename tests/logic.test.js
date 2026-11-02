@@ -50,6 +50,6 @@ test('unlocked unlimited; invalid license and corrupt count do not bypass limit'
   assert.equal((await q.consume()).recorded,false);
 });
 test('supported URLs are restricted', () => {
-  for(const url of ['https://www.linkedin.com/jobs/view/1','https://uk.indeed.com/viewjob','https://indeed.com/']) assert.equal(isSupportedUrl(url),true);
-  for(const url of ['http://uk.indeed.com/','https://indeed.com.evil.test/','https://www.linkedin.com/feed/','garbage']) assert.equal(isSupportedUrl(url),false);
+  assert.equal(isSupportedUrl('https://www.linkedin.com/jobs/view/1'),true);
+  for(const url of ['https://uk.indeed.com/viewjob','https://indeed.com/','http://uk.indeed.com/','https://indeed.com.evil.test/','https://www.linkedin.com/feed/','garbage']) assert.equal(isSupportedUrl(url),false);
 });
