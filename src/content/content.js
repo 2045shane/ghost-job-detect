@@ -40,7 +40,6 @@
         if (!q.recorded) { line(output,G.CTA); line(output,'可在设置页输入 license 解锁。'); return; }
         const result = G.analyzeJob(job);
         line(output,job.title,'h3'); line(output,job.company || '公司名称未知');
-        if (job.indeed) line(output,'Indeed 实验性提取器（TODO：完善页面布局适配）');
         line(output,`发布/更新：${job.dateText || '未知'}${result.days === null ? '' : `（约 ${Math.round(result.days * 10)/10} 天）`}`);
         line(output,`重新发布：${result.reposted ? '是（Reposted）' : '未识别到标记'}；申请人数：${job.applicantsText || '未知'}`);
         line(output,`疑似假岗：${result.score} / 100 · ${result.level}风险`,'h3');

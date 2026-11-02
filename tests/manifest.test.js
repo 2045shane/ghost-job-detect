@@ -5,7 +5,7 @@ test('MV3 entry points, least permissions and referenced files exist',()=>{
  const m=JSON.parse(fs.readFileSync(path.join(root,'manifest.json'),'utf8'));
  assert.equal(m.manifest_version,3); assert.ok(m.action.default_popup); assert.ok(m.options_page); assert.ok(m.content_scripts.length);
  assert.deepEqual(m.permissions,['storage','activeTab']);
- assert.deepEqual(m.host_permissions,['https://www.linkedin.com/jobs/*','https://*.indeed.com/*']);
+ assert.deepEqual(m.host_permissions,['https://www.linkedin.com/jobs/*']);
  const files=[m.action.default_popup,m.options_page,m.background.service_worker,...Object.values(m.icons),...Object.values(m.action.default_icon)];
  for(const script of m.content_scripts){assert.deepEqual(script.matches,m.host_permissions); files.push(...script.js);}
  for(const file of files) assert.ok(fs.existsSync(path.join(root,file)),file);
